@@ -2,12 +2,12 @@
 """module of the command interpreter"""
 
 import cmd
-import models
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 
 white_list = ["BaseModel", "User"]
-class_list = [BaseModel(), User()]
+class_list = [BaseModel, User]
 
 
 class HBNBCommand(cmd.Cmd):
@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         """prints the string representation of an instance
            based on the class name and id"""
         args = line.split()
-        objects_dic = models.storage.all()
+        objects_dic = storage.all()
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] not in white_list:
@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """deletes an instance based on the class name and id"""
         args = line.split()
-        objects_dic = models.storage.all()
+        objects_dic = storage.all()
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] not in white_list:
@@ -65,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) != 2:
             print("** instance id missing **")
         elif args[0]+"."+args[1] in objects_dic:
-            models.storage.all().pop(args[0]+"."+args[1])
+            storage.all().pop(args[0]+"."+args[1])
         else:
             print("** no instance found **")
 
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
         """prints all string representation of all instances
            based (or not) on the class name"""
         args = line.split()
-        objects_dic = models.storage.all()
+        objects_dic = storage.all()
         if len(args) == 0:
             for key in objects_dic:
                 print(objects_dic[key])
@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
         """updates an instance based on the class name and id
            by adding or updating attribute"""
         args = line.split()
-        objects_dic = models.storage.all()
+        objects_dic = storage.all()
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] not in white_list:
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
-            setattr(models.storage.all()[args[0]+"."+args[1]],
+            setattr(storage.all()[args[0]+"."+args[1]],
                     args[2], args[3])
 
 

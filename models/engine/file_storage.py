@@ -7,7 +7,7 @@ from models.base_model import BaseModel
 from models.user import User
 
 white_list = ["BaseModel", "User"]
-class_list = [BaseModel(), User()]
+class_list = [BaseModel, User]
 
 
 class FileStorage():
@@ -39,7 +39,7 @@ class FileStorage():
             with open(self.__file_path, "r") as f:
                 dict = json.load(f)
             for key in dict:
-                for i in range(white_list):
+                for i in range(len(white_list)):
                     if key.__class__.__name__ == white_list[i]:
                         return
                 self.__objects[key] = class_list[i](**dict[key])
