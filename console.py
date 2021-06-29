@@ -90,13 +90,16 @@ class HBNBCommand(cmd.Cmd):
            based (or not) on the class name"""
         args = line.split()
         objects_dic = storage.all()
+        objects_list = []
         if len(args) == 0:
             for key in objects_dic:
-                print(objects_dic[key])
+                objects_list.append(objects_dic[key].__str__())
+            print(objects_list)
         elif args[0] in white_list:
             for key in objects_dic:
                 if objects_dic[key].__class__.__name__ == args[0]:
-                    print(objects_dic[key])
+                    objects_list.append(objects_dic[key].__str__())
+            print(objects_list)
         else:
             print("** class doesn't exist **")
 

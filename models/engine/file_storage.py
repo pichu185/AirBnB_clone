@@ -52,10 +52,8 @@ class FileStorage():
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r") as f:
                 dict = json.load(f)
-            for key in dict:
-                for key, value in class_list.items():
-                    if key.__class__.__name__ == key:
-                        self.__objects[key] = value(**dict[key])
-                        return    
+            for i in dict:
+                self.__objects[i] = class_list[dict[i]["__class__"]](**dict[i])
+                return
         else:
             pass
