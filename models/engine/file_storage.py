@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 """module of 'FileStorage' class"""
 
-import os
+import os.path
 import json
 from models.base_model import BaseModel
+from models.user import User
+
+white_list = ["BaseModel", "User"]
+class_list = [BaseModel(), User()]
 
 
 class FileStorage():
@@ -31,10 +35,13 @@ class FileStorage():
             json.dump(dict, f)
 
     def reload(self):
-        try:
+        if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r") as f:
                 dict = json.load(f)
             for key in dict:
-                self.__objects[key] = BaseModel(**dict[key])
-        except:
+                for i in range(white_list):
+                    if key.__class__.__name__ == white_list[i]:
+                        return
+                self.__objects[key] = class_list[i](**dict[key])
+        else:
             pass
