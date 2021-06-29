@@ -5,9 +5,23 @@ import os.path
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
-white_list = ["BaseModel", "User"]
-class_list = [BaseModel, User]
+class_list = {"BaseModel": BaseModel,
+              "User": User,
+              "State": State,
+              "City": City,
+              "Amenity": Amenity,
+              "Place": Place,
+              "Review": Review
+              }
+white_list = []
+for key in class_list:
+    white_list.append(key)
 
 
 class FileStorage():
@@ -39,9 +53,9 @@ class FileStorage():
             with open(self.__file_path, "r") as f:
                 dict = json.load(f)
             for key in dict:
-                for i in range(len(white_list)):
-                    if key.__class__.__name__ == white_list[i]:
-                        return
-                self.__objects[key] = class_list[i](**dict[key])
+                for key, value in class_list.items():
+                    if key.__class__.__name__ == key:
+                        self.__objects[key] = value(**dict[key])
+                        return    
         else:
             pass
