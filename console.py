@@ -6,8 +6,8 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 
-white_list = ["BaseModel", "User"]
-class_list = [BaseModel, User]
+white_list = [ "BaseModel", "User" ]
+class_list = { "BaseModel": BaseModel, "User": User }
 
 
 class HBNBCommand(cmd.Cmd):
@@ -34,12 +34,11 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in white_list:
             print("** class doesn't exist **")
         else:
-            for i in range(white_list):
-                if args[i] == white_list[i]:
-                    return
-            new_instance = class_list[i]
-            print(new_instance.id)
-            new_instance.save()
+            for key, value in class_list.items():
+                if args[0] == key:
+                    new_instance = value()
+                    print(new_instance.id)
+                    new_instance.save()
 
     def do_show(self, line):
         """prints the string representation of an instance
