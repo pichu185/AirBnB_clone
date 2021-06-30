@@ -121,9 +121,19 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
-            setattr(storage.all()[args[0]+"."+args[1]],
-                    args[2], args[3])
-
+            if args[0]+"."+args[1] is int:
+                if (args[3]).isnumeric():
+                    setattr(storage.all()[args[0]+"."+args[1]],
+                            args[2], int(args[3]))
+            elif args[0]+"."+args[1] is float:
+                idk = args[3].split(".")
+                if idk[0].isnumeric() and idk[1].isnumeric():
+                    setattr(storage.all()[args[0]+"."+args[1]],
+                        args[2], float(args[3]))
+            else:
+                setattr(storage.all()[args[0]+"."+args[1]],
+                        args[2], args[3])
+    
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
