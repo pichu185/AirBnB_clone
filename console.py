@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 if idk[0].isnumeric() and idk[1].isnumeric():
                     value = float(value)
             setattr(storage.all()[key], attr, value)
-
+        storage.all()[key].save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
