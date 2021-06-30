@@ -84,6 +84,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         elif args[0]+"."+args[1] in objects_dic:
             storage.all().pop(args[0]+"."+args[1])
+            storage.all()[args[0]+"."+args[1]].save()
         else:
             print("** no instance found **")
 
