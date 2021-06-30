@@ -126,11 +126,13 @@ class HBNBCommand(cmd.Cmd):
             key = args[0]+"."+args[1]
             attr = args[2]
             value = args[3]
-            instance = objects_dic[key]
-            if type(getattr(instance, attr)) is int:
+            value = value.split('"')
+            value = value[1]
+            inst = objects_dic[key]
+            if hasattr(inst, attr) and type(getattr(inst, attr)) is int:
                 if (value).isnumeric():
                     value = int(value)
-            elif type(getattr(instance, attr)) is float:
+            elif hasattr(inst, attr) and type(getattr(inst, attr)) is float:
                 idk = args[3].split(".")
                 if idk[0].isnumeric() and idk[1].isnumeric():
                     value = float(value)
