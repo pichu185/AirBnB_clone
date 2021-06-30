@@ -22,6 +22,8 @@ class_list = {"BaseModel": BaseModel,
 white_list = []
 for key in class_list:
     white_list.append(key)
+int_atr = []
+float_atr = []
 
 
 class HBNBCommand(cmd.Cmd):
@@ -121,19 +123,19 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
-            if args[0]+"."+args[1] is int:
-                if (args[3]).isnumeric():
-                    setattr(storage.all()[args[0]+"."+args[1]],
-                            args[2], int(args[3]))
-            elif args[0]+"."+args[1] is float:
+            key = args[0]+"."+args[1]
+            attr = args[2]
+            value = args[3]
+            instance = objects_dic[key]
+            if type(getattr(instance, attr)) is int:
+                if (value).isnumeric():
+                    value = int(value)
+            elif type(getattr(instance, attr)) is float:
                 idk = args[3].split(".")
                 if idk[0].isnumeric() and idk[1].isnumeric():
-                    setattr(storage.all()[args[0]+"."+args[1]],
-                        args[2], float(args[3]))
-            else:
-                setattr(storage.all()[args[0]+"."+args[1]],
-                        args[2], args[3])
-    
+                    value = float(value)
+            setattr(storage.all()[key], attr, value)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
