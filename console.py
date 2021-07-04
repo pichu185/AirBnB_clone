@@ -22,8 +22,12 @@ class_list = {"BaseModel": BaseModel,
 white_list = []
 for key in class_list:
     white_list.append(key)
-int_atr = []
-float_atr = []
+commands = ["do_show",
+            "do_destroy",
+            "do_all",
+            "do_update",
+            "do_count"
+            ]
 
 
 class HBNBCommand(cmd.Cmd):
@@ -126,9 +130,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = args[0]+"."+args[1]
             attr = args[2]
-            value = args[3]
-            value = value.split('"')
-            value = value[1]
+            value = args[3].replace('"', ' ')
             inst = objects_dic[key]
             if hasattr(inst, attr) and type(getattr(inst, attr)) is int:
                 if (value).isnumeric():
@@ -139,6 +141,50 @@ class HBNBCommand(cmd.Cmd):
                     value = float(value)
             setattr(storage.all()[key], attr, value)
             storage.all()[key].save()
+
+    def do_count(self, line):
+        """retrieve the number of instances of a class"""
+        args = line.split()
+        objects_dic = storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in white_list:
+            print("** class doesn't exist **")
+        pichu = 0
+        for i in objects_dic:
+            if objects_dic[i].__class__.__name__ == args[0]:
+                pichu += 1
+        print(pichu)
+
+    def default(self, line):
+        """default method to use with command()"""
+        line = line.replace('(', ' ').replace(')', ' ').replace('.', ' ')
+        line = line.replace(',', '').replace("'", '').replace('"', '')
+        args = line.split(" ")
+        args.remove("")
+        if len(args) > 1:
+            cmd = args[1]
+            args.remove(cmd)
+        if cmd == "update":
+            if "{" in line:
+                line = line.replace('{', '').replace('}', '').replace(':', '')
+                args = line.split(" ")
+                args.remove("")
+                static = args[0] + " " + args[2]
+                while len(args) >= 5:
+                    variable = args[3] + " " + args[4]
+                    args.remove(args[3])
+                    args.remove(args[3])
+                    argument = static + " " + variable
+                    eval('self.do_update' + '(argument)')
+                return
+        argument = ""
+        for arg in args:
+            argument =  argument + arg + " "
+        try:
+            eval('self.do_' + cmd + '(argument)')
+        except:
+            print("** invalid command **")
 
 
 if __name__ == '__main__':
