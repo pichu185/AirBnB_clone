@@ -180,7 +180,7 @@ class HBNBCommand(cmd.Cmd):
                 return
         argument = ""
         for arg in args:
-            argument =  argument + arg + " "
+            argument = argument + arg + " "
         try:
             eval('self.do_' + cmd + '(argument)')
         except:
