@@ -302,6 +302,57 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
 
+    def test_destroy(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create BaseModel")
+            instance = 'BaseModel.' + obtained.getvalue().strip()
+            command = 'BaseModel.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create User")
+            instance = 'User.' + obtained.getvalue().strip()
+            command = 'User.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create State")
+            instance = 'State.' + obtained.getvalue().strip()
+            command = 'State.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create City")
+            instance = 'City.' + obtained.getvalue().strip()
+            command = 'City.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create Amenity")
+            instance = 'Amenity.' + obtained.getvalue().strip()
+            command = 'Amenity.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create Place")
+            instance = 'Place.' + obtained.getvalue().strip()
+            command = 'Place.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create Review")
+            instance = 'Review.' + obtained.getvalue().strip()
+            command = 'Review.destroy("{}")'.format(obtained.getvalue().strip())
+            self.assertIn(instance, storage.all().keys())
+            HBNBCommand().onecmd(command)
+            self.assertNotIn(instance, storage.all().keys())
+
 
 if __name__ == "__main__":
     unittest.main()
