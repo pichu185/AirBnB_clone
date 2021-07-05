@@ -2,7 +2,16 @@
 
 The console is the first part of the **AirBnB clone** project which aims to deploy a simple copy of the AirBnB website to cover all fundamental concepts of the higher level programming track.  
 
-![holbertonbnb](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN/20210705/us-east-1/s3/aws4_request&X-Amz-Date=20210705T015251Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=97a24c8e78d2f1a37e1726a8a47c3150e58ec71c74d0d8495fd44d40f95fc087)
+<br>
+
+<div align=center>  
+    <img  
+    style="text-align:center"  
+    src="https://raw.githubusercontent.com/coding-max/hbtn_config/main/assets/hbnb.png"  
+    alt="holbertonbnb"/>  
+</div>
+
+<br>
 
 ## Overview
 
@@ -62,7 +71,8 @@ This first part of the project focuses on creating a command interpreter that al
 
 This project was interpreted/compiled and tested on Ubuntu 14.04 LTS using python3 (version 3.4.3).  
 
-To use the console you must have `pyhton3` installed and the repository cloned (`git clone git@github.com:coding-max/AirBnB_clone.git`).  
+To use the console you must have `pyhton3` installed and the repository cloned  
+(`git clone git@github.com:coding-max/AirBnB_clone.git`).  
 
 To start the console you only need to run `./console` in the root of the repository.  
 
