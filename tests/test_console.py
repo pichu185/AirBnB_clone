@@ -166,7 +166,7 @@ class TestHBNBCommand_all_method(unittest.TestCase):
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
-    
+
     def test_all_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             self.create_all_classes()
@@ -284,7 +284,7 @@ class TestHBNBCommand_all_method(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
-        
+
     def test_show_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
@@ -325,7 +325,7 @@ class TestHBNBCommand_all_method(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
-    
+
     def test_destroy_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create User")
@@ -355,7 +355,7 @@ class TestHBNBCommand_all_method(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
-    
+
     def test_destroy_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
@@ -404,7 +404,7 @@ class TestHBNBCommand_all_method(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
-    
+
     def test_update_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create User")
@@ -578,7 +578,7 @@ class TestHBNBCommand_all_method(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
-    
+
     def test_update_dict_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
