@@ -1,6 +1,6 @@
 # AirBnB clone - The console
 
-The console is the first part of the **AirBnB clone** project which aims to deploy a simple copy of the AirBnB website to cover all fundamental concepts of the higher level programming track.  
+The console is the first part of the **AirBnB clone** project which aims to deploy a simple copy of the AirBnB website to cover all fundamental concepts of the Holberton School higher level programming track.  
 
 <br>
 
@@ -16,9 +16,9 @@ The console is the first part of the **AirBnB clone** project which aims to depl
 ## Overview
 
 This first part of the project focuses on creating a command interpreter that allows to:  
-- create the data model  
-- manage (create, update and destroy) objects via a console  
-- store and persist objects to a file (JSON file)  
+- create the data model.  
+- manage (create, update and destroy) objects via a console.  
+- store and persist objects to a file (JSON file).  
 
 
 ## Files and Directories
