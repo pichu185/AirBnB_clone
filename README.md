@@ -1,108 +1,72 @@
 # AirBnB clone - The console
 
-### Welcome to the AirBnB clone project! 
+The console is the first part of the **AirBnB clone** project which aims to deploy a simple copy of the AirBnB website to cover all fundamental concepts of the higher level programming track.  
 
-Before starting, please read the  **AirBnB**  concept page.
+![holbertonbnb](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN/20210705/us-east-1/s3/aws4_request&X-Amz-Date=20210705T015251Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=97a24c8e78d2f1a37e1726a8a47c3150e58ec71c74d0d8495fd44d40f95fc087)
 
-  
+## Overview
 
-  
+This first part of the project focuses on creating a command interpreter that allows to:  
+- create the data model  
+- manage (create, update and destroy) objects via a console  
+- store and persist objects to a file (JSON file)  
 
-#### First step: Write a command interpreter to manage your AirBnB objects.
 
-This is the first step towards building your first full web application: the  **AirBnB clone**. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
+## Files and Directories
 
-Each task is linked and will help you to:
+**`/models`** directory constains all classes used for the project.  
+[basemodel.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/base_model.py) file contains the base class (**BaseModel**) of all models in the project:  
+- [user.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/user.py) - file contains the `User` class.  
+- [state.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/state.py) - file contains the `State` class.  
+- [city.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/city.py) - file contains the `City`class.  
+- [amenity.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/amenity.py) - file contains the `Amenity` class.  
+- [place.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/place.py) - file contains the `Place` class.  
+- [review.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/review.py) - file contains the `Review` class.  
 
--   put in place a parent class (called  `BaseModel`) to take care of the initialization, serialization and deserialization of your future instances
--   create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
--   create all classes used for AirBnB (`User`,  `State`,  `City`,  `Place`…) that inherit from  `BaseModel`
--   create the first abstracted storage engine of the project: File storage.
--   create all unittests to validate all our classes and storage engine
+**`/models/engine`** directory contains the class that handles JASON serialization and deserialization.  
+[file_storage.py](https://github.com/coding-max/AirBnB_clone/blob/main/models/engine/file_storage.py) - file contains `FileStorage` class.  
 
-### What’s a command interpreter?
+**`/tests`** directory contains all unit test cases for this project.  
 
-Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
+[console.py](https://github.com/coding-max/AirBnB_clone/blob/main/console.py) the console contains the entry point of the command interpreter.  
 
--   Create a new object (ex: a new User or a new Place)
--   Retrieve an object from a file, a database etc…
--   Do operations on objects (count, compute stats, etc…)
--   Update attributes of an object
--   Destroy an object
+<br>
 
-## Resources
+```
+|── console.py
+├── models/
+│   ├── amenity.py
+│   ├── base_model.py
+│   ├── city.py
+│   ├── place.py
+│   ├── review.py
+│   ├── state.py
+│   |── user.py
+│   └── engine/
+│       └── file_storage.py
+└── tests/
+    |── test_console.py
+    └── test_models/
+        ├── test_amenity.py
+        ├── test_base_model.py
+        ├── test_city.py
+        ├── test_place.py
+        ├── test_review.py
+        ├── test_state.py
+        |── test_user.py
+        └── test_engine/
+            └── test_file_storage.py
+```
 
-**Read or watch**:
+## Environment and Execution
 
--   [cmd module](https://intranet.hbtn.io/rltoken/Fx9HXIjmGzbmET4ylYg2Rw "cmd module")
--   **packages**  concept page
--   [uuid module](https://intranet.hbtn.io/rltoken/eaQ6aELbdqb0WmPddhD00g "uuid module")
--   [datetime](https://intranet.hbtn.io/rltoken/_ySDcgtfrwLkTyQzYHTH0Q "datetime")
--   [unittest module](https://intranet.hbtn.io/rltoken/QX7d4D__xhOJIGIWZBp39g "unittest module")
--   [args/kwargs](https://intranet.hbtn.io/rltoken/jQd3P_uSO0FeU6jlN-z5mg "args/kwargs")
--   [Python test cheatsheet](https://intranet.hbtn.io/rltoken/WPlydsqB0PG0uVcixemv9A "Python test cheatsheet")
+This project was interpreted/compiled and tested on Ubuntu 14.04 LTS using python3 (version 3.4.3).  
 
-## Learning Objectives
+To use the console you must have `pyhton3` installed and the repository cloned (`git clone git@github.com:coding-max/AirBnB_clone.git`).  
 
-At the end of this project, you are expected to be able to  [explain to anyone](https://intranet.hbtn.io/rltoken/ObXBKyQOTj7-L97GWdhcfQ "explain to anyone"),  **without the help of Google**:
+To start the console you only need to run `./console` in the root of the repository.  
 
-### General
-
--   How to create a Python package
--   How to create a command interpreter in Python using the  `cmd`  module
--   What is Unit testing and how to implement it in a large project
--   How to serialize and deserialize a Class
--   How to write and read a JSON file
--   How to manage  `datetime`
--   What is an  `UUID`
--   What is  `*args`  and how to use it
--   What is  `**kwargs`  and how to use it
--   How to handle named arguments in a function
-
-## Requirements
-
-### Python Scripts
-
--   Allowed editors:  `vi`,  `vim`,  `emacs`
--   All your files will be interpreted/compiled on Ubuntu 14.04 LTS using  `python3`  (version 3.4.3)
--   All your files should end with a new line
--   The first line of all your files should be exactly  `#!/usr/bin/python3`
--   A  `README.md`  file, at the root of the folder of the project, is mandatory
--   Your code should use the  `PEP 8`  style (version 1.7 or more)
--   All your files must be executable
--   The length of your files will be tested using  `wc`
--   All your modules should have a documentation (`python3 -c 'print(__import__("my_module").__doc__)'`)
--   All your classes should have a documentation (`python3 -c 'print(__import__("my_module").MyClass.__doc__)'`)
--   All your functions (inside and outside a class) should have a documentation (`python3 -c 'print(__import__("my_module").my_function.__doc__)'`  and  `python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'`)
--   A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
-
-### Python Unit Tests
-
--   Allowed editors:  `vi`,  `vim`,  `emacs`
--   All your files should end with a new line
--   All your test files should be inside a folder  `tests`
--   You have to use the  [unittest module](https://intranet.hbtn.io/rltoken/QX7d4D__xhOJIGIWZBp39g "unittest module")
--   All your test files should be python files (extension:  `.py`)
--   All your test files and folders should start by  `test_`
--   Your file organization in the tests folder should be the same as your project
--   e.g., For  `models/base_model.py`, unit tests must be in:  `tests/test_models/test_base_model.py`
--   e.g., For  `models/user.py`, unit tests must be in:  `tests/test_models/test_user.py`
--   All your tests should be executed by using this command:  `python3 -m unittest discover tests`
--   You can also test file by file by using this command:  `python3 -m unittest tests/test_models/test_base_model.py`
--   All your modules should have a documentation (`python3 -c 'print(__import__("my_module").__doc__)'`)
--   All your classes should have a documentation (`python3 -c 'print(__import__("my_module").MyClass.__doc__)'`)
--   All your functions (inside and outside a class) should have a documentation (`python3 -c 'print(__import__("my_module").my_function.__doc__)'`  and  `python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'`)
--   We strongly encourage you to work together on test cases, so that you don’t miss any edge case
-
-### GitHub
-
-**There should be one project repository per group. If you clone/fork/whatever a project repository with the same name before the second deadline, you risk a 0% score.**
-
-## More Info
-
-### Execution
-
-Your shell should work like this in interactive mode:
+The console works like this in interactive mode:
 
 ```
 $ ./console.py
@@ -110,8 +74,21 @@ $ ./console.py
 
 Documented commands (type help <topic>):
 ========================================
-EOF  help  quit
+EOF  all  count  create  destroy  help  quit  show  update
 
+(hbnb) 
+(hbnb) 
+(hbnb) BaseModel.count()
+0
+(hbnb) create BaseModel
+96589f6a-4856-4d3c-b9e4-3e8985f18bb8
+(hbnb) create User
+5acd7fb5-31b8-4193-8df4-f3353056b0b0
+(hbnb) BaseModel.count()
+1
+(hbnb) BaseModel.destroy("96589f6a-4856-4d3c-b9e4-3e8985f18bb8")
+(hbnb) BaseModel.count()
+0
 (hbnb) 
 (hbnb) 
 (hbnb) quit
@@ -119,32 +96,7 @@ $
 
 ```
 
-But also in non-interactive mode: (like the Shell project in C)
+## Authors
 
-```
-$ echo "help" | ./console.py
-(hbnb)
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb) 
-$
-$ cat test_help
-help
-$
-$ cat test_help | ./console.py
-(hbnb)
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb) 
-$
-
-```
-
-All tests should also pass in non-interactive mode:  `$ echo "python3 -m unittest discover tests" | bash`
-
-![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210625%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210625T170748Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4ca65fdc5180dbeffc14af11b4e841edabeed89681e0c6edee19b5bc46411c86)
-
+- [Maximiliano Pan](https://www.linkedin.com/in/maximilianopan/)  
+- [Agustín Otegui]()  
