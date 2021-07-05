@@ -141,18 +141,22 @@ class TestHBNBCommand_errors(unittest.TestCase):
             self.assertEqual(expected, obtained.getvalue().strip())
 
 
-class TestHBNBCommand_classes(unittest.TestCase):
-    """tests the HBNB command interpreter using the classes"""
+class TestHBNBCommand_all_method(unittest.TestCase):
+    """tests the HBNB command interpreter"""
 
-    def test_all(self):
+    @classmethod
+    def create_all_classes(self):
+        HBNBCommand().onecmd("create BaseModel")
+        HBNBCommand().onecmd("create User")
+        HBNBCommand().onecmd("create State")
+        HBNBCommand().onecmd("create City")
+        HBNBCommand().onecmd("create Amenity")
+        HBNBCommand().onecmd("create Place")
+        HBNBCommand().onecmd("create Review")
+
+    def test_all_BaseModel(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("create BaseModel")
-            HBNBCommand().onecmd("create User")
-            HBNBCommand().onecmd("create State")
-            HBNBCommand().onecmd("create City")
-            HBNBCommand().onecmd("create Amenity")
-            HBNBCommand().onecmd("create Place")
-            HBNBCommand().onecmd("create Review")
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("BaseModel.all()")
             self.assertIn("BaseModel", obtained.getvalue().strip())
@@ -162,6 +166,10 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
+    
+    def test_all_User(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("User.all()")
             self.assertIn("User", obtained.getvalue().strip())
@@ -171,6 +179,10 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
+
+    def test_all_State(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("State.all()")
             self.assertIn("State", obtained.getvalue().strip())
@@ -180,6 +192,10 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
+
+    def test_all_City(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("City.all()")
             self.assertIn("City", obtained.getvalue().strip())
@@ -189,6 +205,10 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
+
+    def test_all_Amenity(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("Amenity.all()")
             self.assertIn("Amenity", obtained.getvalue().strip())
@@ -198,6 +218,10 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("City", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
+
+    def test_all_Place(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("Place.all()")
             self.assertIn("Place", obtained.getvalue().strip())
@@ -207,6 +231,10 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("City", obtained.getvalue().strip())
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Review", obtained.getvalue().strip())
+
+    def test_all_Review(self):
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            self.create_all_classes()
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("Review.all()")
             self.assertIn("Review", obtained.getvalue().strip())
@@ -217,41 +245,11 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertNotIn("Amenity", obtained.getvalue().strip())
             self.assertNotIn("Place", obtained.getvalue().strip())
 
-    def test_count(self):
-        os.remove("file.json")
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("create BaseModel")
-            HBNBCommand().onecmd("create BaseModel")
-            HBNBCommand().onecmd("create BaseModel")
-            HBNBCommand().onecmd("create User")
-            HBNBCommand().onecmd("create State")
-            HBNBCommand().onecmd("create City")
-            HBNBCommand().onecmd("create City")
-            HBNBCommand().onecmd("create Amenity")
-            HBNBCommand().onecmd("create Place")
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("BaseModel.count()")
-            self.assertEqual("4", obtained.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("User.count()")
-            self.assertEqual("2", obtained.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("State.count()")
-            self.assertEqual("2", obtained.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("City.count()")
-            self.assertEqual("3", obtained.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("Amenity.count()")
-            self.assertEqual("2", obtained.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("Place.count()")
-            self.assertEqual("2", obtained.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as obtained:
-            HBNBCommand().onecmd("Review.count()")
-            self.assertEqual("1", obtained.getvalue().strip())
 
-    def test_show(self):
+class TestHBNBCommand_all_method(unittest.TestCase):
+    """tests the HBNB command interpreter"""
+
+    def test_show_BaseModel(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create BaseModel")
             id = obtained.getvalue().strip()
@@ -259,6 +257,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
+
+    def test_show_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create User")
             id = obtained.getvalue().strip()
@@ -266,6 +266,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
+
+    def test_show_State(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create State")
             id = obtained.getvalue().strip()
@@ -273,6 +275,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
+
+    def test_show_City(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create City")
             id = obtained.getvalue().strip()
@@ -280,6 +284,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
+        
+    def test_show_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
             id = obtained.getvalue().strip()
@@ -287,6 +293,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
+
+    def test_show_Place(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Place")
             id = obtained.getvalue().strip()
@@ -294,6 +302,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
+
+    def test_show_Review(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Review")
             id = obtained.getvalue().strip()
@@ -302,7 +312,11 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn(id, obtained.getvalue().strip())
 
-    def test_destroy(self):
+
+class TestHBNBCommand_all_method(unittest.TestCase):
+    """tests the HBNB command interpreter"""
+
+    def test_destroy_BaseModel(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create BaseModel")
             instance = 'BaseModel.' + obtained.getvalue().strip()
@@ -311,6 +325,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
+    
+    def test_destroy_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create User")
             instance = 'User.' + obtained.getvalue().strip()
@@ -319,6 +335,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
+
+    def test_destroy_State(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create State")
             instance = 'State.' + obtained.getvalue().strip()
@@ -327,6 +345,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
+
+    def test_destroy_City(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create City")
             instance = 'City.' + obtained.getvalue().strip()
@@ -335,6 +355,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
+    
+    def test_destroy_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
             instance = 'Amenity.' + obtained.getvalue().strip()
@@ -343,6 +365,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
+
+    def test_destroy_Place(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Place")
             instance = 'Place.' + obtained.getvalue().strip()
@@ -351,6 +375,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn(instance, storage.all().keys())
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
+
+    def test_destroy_Review(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Review")
             instance = 'Review.' + obtained.getvalue().strip()
@@ -360,7 +386,11 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertNotIn(instance, storage.all().keys())
 
-    def test_update(self):
+
+class TestHBNBCommand_all_method(unittest.TestCase):
+    """tests the HBNB command interpreter"""
+
+    def test_update_BaseModel(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create BaseModel")
             id = obtained.getvalue().strip()
@@ -374,6 +404,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
+    
+    def test_update_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create User")
             id = obtained.getvalue().strip()
@@ -387,6 +419,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
+
+    def test_update_State(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create State")
             id = obtained.getvalue().strip()
@@ -400,6 +434,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
+
+    def test_update_City(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create City")
             id = obtained.getvalue().strip()
@@ -413,6 +449,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
+
+    def test_update_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
             id = obtained.getvalue().strip()
@@ -426,6 +464,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
+
+    def test_update_Place(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Place")
             id = obtained.getvalue().strip()
@@ -439,6 +479,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             HBNBCommand().onecmd(command)
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
+
+    def test_update_Review(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Review")
             id = obtained.getvalue().strip()
@@ -453,7 +495,11 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("Holberton", obtained.getvalue().strip())
             self.assertIn("School", obtained.getvalue().strip())
 
-    def test_update_dict(self):
+
+class TestHBNBCommand_all_method(unittest.TestCase):
+    """tests the HBNB command interpreter"""
+
+    def test_update_dict_BaseModel(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create BaseModel")
             id = obtained.getvalue().strip()
@@ -472,6 +518,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+
+    def test_update_dict_User(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create User")
             id = obtained.getvalue().strip()
@@ -490,6 +538,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+
+    def test_update_dict_State(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create State")
             id = obtained.getvalue().strip()
@@ -508,6 +558,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+
+    def test_update_dict_City(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create City")
             id = obtained.getvalue().strip()
@@ -526,6 +578,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+    
+    def test_update_dict_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Amenity")
             id = obtained.getvalue().strip()
@@ -544,6 +598,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+
+    def test_update_dict_Place(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Place")
             id = obtained.getvalue().strip()
@@ -562,6 +618,8 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+
+    def test_update_dict_Review(self):
         with patch("sys.stdout", new=StringIO()) as obtained:
             HBNBCommand().onecmd("create Review")
             id = obtained.getvalue().strip()
@@ -580,6 +638,47 @@ class TestHBNBCommand_classes(unittest.TestCase):
             self.assertIn("School", obtained.getvalue().strip())
             self.assertIn("Montevideo", obtained.getvalue().strip())
             self.assertIn("Uruguay", obtained.getvalue().strip())
+
+
+class TestHBNBCommand_all_method(unittest.TestCase):
+    """tests the HBNB command interpreter"""
+
+    def test_count(self):
+        try:
+            os.remove("file.json")
+        except:
+            pass
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("create BaseModel")
+            HBNBCommand().onecmd("create BaseModel")
+            HBNBCommand().onecmd("create BaseModel")
+            HBNBCommand().onecmd("create User")
+            HBNBCommand().onecmd("create State")
+            HBNBCommand().onecmd("create City")
+            HBNBCommand().onecmd("create City")
+            HBNBCommand().onecmd("create Amenity")
+            HBNBCommand().onecmd("create Place")
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("BaseModel.count()")
+            self.assertEqual("3", obtained.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("User.count()")
+            self.assertEqual("1", obtained.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("State.count()")
+            self.assertEqual("1", obtained.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("City.count()")
+            self.assertEqual("2", obtained.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("Amenity.count()")
+            self.assertEqual("1", obtained.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("Place.count()")
+            self.assertEqual("1", obtained.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as obtained:
+            HBNBCommand().onecmd("Review.count()")
+            self.assertEqual("0", obtained.getvalue().strip())
 
 
 if __name__ == "__main__":
