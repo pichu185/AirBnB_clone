@@ -7,3 +7,9 @@ header {
     display: flex;
     justify-content: center;
 }
+
+.img {
+    padding-left: 20px;
+    width: 100px;
+    height: 100px;
+}
