@@ -7,6 +7,5 @@ footer {
     text-align: center;
     bottom: 0%;
     position: fixed;
-    display: flex;
     align-items: center;
 }
