@@ -10,7 +10,8 @@ header {
 
 header .Holberton {
     padding-left: 20px;
-    width: 100px;
-    height: 100px;
-    background-image: url("../images/Holberton.png");
+    width: 20%;
+    height: 60px;
+    background-image: url("../images/Holberton.png") no-repeat;
+    margin: auto 20px;
 }
