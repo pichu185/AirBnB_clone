@@ -12,6 +12,6 @@ header .Holberton {
     padding-left: 20px;
     width: 20%;
     height: 60px;
-    background-image: url("../images/Holberton.png") no-repeat;
+    background: url("../images/Holberton.png") no-repeat;
     margin: auto 20px;
 }
