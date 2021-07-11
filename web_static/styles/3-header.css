@@ -8,9 +8,9 @@ header {
     justify-content: center;
 }
 
-.img {
+#img {
     padding-left: 20px;
     width: 100px;
     height: 100px;
-    background-image: url("..images/Holberton.png");
+    background-image: url("C:\Users\2793\AirBnB_clone\web_static\images\Holberton.png");
 }
