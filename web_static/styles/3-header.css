@@ -9,7 +9,7 @@ header {
     align-items: center;
    
 }
-header .Holberton{
+header .holberton{
     text-align: center left;
     margin: auto 20px;
     background: url("../images/Holberton.png") no-repeat;
