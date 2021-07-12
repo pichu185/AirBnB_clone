@@ -7,10 +7,8 @@ body {
 }
 
 .container {
-    color: white;
-    height: 70px;
-    width: 100%;
-    border: 1px solid #DDDDDD;
-    
-    
+    max-width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 10%;    
 }
